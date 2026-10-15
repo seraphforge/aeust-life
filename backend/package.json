@@ -1,0 +1,12 @@
+{
+  "name": "@aeust-life/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node tooling/node_modules/wrangler/bin/wrangler.js dev --local --ip 127.0.0.1 --port 8787",
+    "check": "tsc --project tsconfig.json --noEmit",
+    "build": "node tooling/node_modules/wrangler/bin/wrangler.js deploy --dry-run --outdir dist",
+    "db:migrate": "node tooling/node_modules/wrangler/bin/wrangler.js d1 migrations apply aeust-life-local --local"
+  }
+}

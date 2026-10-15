@@ -1,0 +1,12 @@
+---
+import type { topics } from '../data/topics';
+interface Props { topic: typeof topics[number]; }
+const { topic } = Astro.props;
+---
+<a class={`topic-card ${topic.color}`} href={`/${topic.slug}`}>
+  <div class="card-top"><span class="mono">{topic.number} / {topic.english}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+  <span class="topic-icon" aria-hidden="true">{topic.icon}</span>
+  <h3>{topic.name}</h3>
+  <p>{topic.description}</p>
+  <span class="card-status">規劃中 <span aria-hidden="true">·</span> 先來看看</span>
+</a>

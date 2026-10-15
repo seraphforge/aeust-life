@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+const groups = [
+ { title: '已完成', label: '01 / THE FOUNDATION', status: 'done', items: [['生活探索入口', '首頁與五個探索主題頁，皆清楚標示功能狀態。'], ['匿名意見回饋', '表單驗證、API 與資料庫寫入原始碼；本機可驗證。'], ['公開專案說明', '專案理念、Nagi 介紹、非官方聲明與開源文件。']] },
+ { title: '開發中', label: '02 / IN PROGRESS', status: 'active', items: [['公開上線準備', 'Cloudflare 設定、真實環境驗證與正式隱私維運流程尚待完成。'], ['第一版使用體驗打磨', '持續收集實際裝置、鍵盤操作與文案的使用回饋。']] },
+ { title: '未來規劃', label: '03 / WHAT’S NEXT', status: 'planned', items: [['可信的活動資訊', '確認來源、設計投稿與審核流程，先求資訊可靠。'], ['社團與校園美食', '與資訊提供者確認內容後再收錄，不預填名單或評價。'], ['安全的揪團與二手交流', '先完成規範、身分與權限設計、檢舉及爭議處理，再開放互動。']] },
+];
+---
+<Layout title="開發進度"><section class="shell page-intro"><p class="eyebrow">BUILDING IN PUBLIC · V0.1</p><h1>一小步，<br />也是往前。</h1><p class="intro-description">這裡沒有漂亮但空白的進度條。<br />做到了什麼、還差什麼，攤開來給你看。</p></section><section class="shell section compact roadmap-grid">{groups.map(group => <div class="roadmap-column"><p class="eyebrow">{group.label}</p><h2><span class={`status-pill ${group.status}`}>{group.title}</span></h2>{group.items.map(([title, detail]) => <article class="roadmap-card"><h3>{title}</h3><p>{detail}</p></article>)}</div>)}</section><section class="shell inline-callout roadmap-cta"><p>規劃會依需求、安全與維護能力調整，目前不承諾上線日期。</p><a class="text-link" href="/feedback">告訴我你最期待哪個功能 ↗</a></section></Layout>

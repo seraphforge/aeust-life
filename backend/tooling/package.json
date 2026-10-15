@@ -1,0 +1,7 @@
+{
+  "name": "aeust-life-cloudflare-tooling",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Installed separately so frontend development never requires Cloudflare tooling.",
+  "devDependencies": { "wrangler": "4.149.0" }
+}

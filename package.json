@@ -1,0 +1,35 @@
+{
+  "name": "aeust-life",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "engines": {
+    "node": ">=24.13.0 <25",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "dev:api": "npm run dev --workspace backend",
+    "dev:api:sqlite": "node scripts/local-api.ts",
+    "check": "npm run check --workspace frontend && npm run check --workspace backend",
+    "build": "npm run build --workspace frontend",
+    "build:worker": "npm run build --workspace backend",
+    "test": "node --test --test-isolation=none tests/*.test.ts",
+    "db:migrate": "npm run db:migrate --workspace backend",
+    "test:d1": "node scripts/test-d1.mjs",
+    "setup:cloudflare": "npm install --prefix backend/tooling",
+    "test:build": "node scripts/check-build.mjs",
+    "check:tests": "tsc --project tests/tsconfig.json --noEmit",
+    "test:browser": "node scripts/test-browser.mjs",
+    "test:http": "node scripts/test-http.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "playwright": "^1.62.1",
+    "typescript": "6.0.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "./tooling/node_modules/wrangler/config-schema.json",
+  "name": "aeust-life-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": false,
+  "routes": [{ "pattern": "REPLACE_WITH_YOUR_DOMAIN/api/*", "zone_name": "REPLACE_WITH_YOUR_ZONE" }],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "ALLOWED_ORIGINS": "https://REPLACE_WITH_YOUR_DOMAIN"
+  },
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "aeust-life-feedback",
+    "database_id": "REPLACE_WITH_REAL_D1_UUID",
+    "migrations_dir": "../database/migrations"
+  }],
+  "ratelimits": [
+    { "name": "FEEDBACK_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } },
+    { "name": "GLOBAL_LIMITER", "namespace_id": "1002", "simple": { "limit": 60, "period": 60 } }
+  ]
+}
