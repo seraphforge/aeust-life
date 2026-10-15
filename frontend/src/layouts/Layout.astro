@@ -13,23 +13,23 @@ const nav = [{ href: '/explore', label: '探索生活' }, { href: '/roadmap', la
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f6f4ec" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/aeust-life/favicon.svg" type="image/svg+xml" />
     <title>{title ? `${title} — AEUST Life` : 'AEUST Life — 欸，今天要幹嘛？'}</title>
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要內容</a>
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="brand" href="/" aria-label="AEUST Life 首頁"><span class="brand-mark" aria-hidden="true">a<span>✳</span></span><span>AEUST <strong>Life</strong><small>課表以外，都是生活。</small></span></a>
+        <a class="brand" href="/aeust-life/" aria-label="AEUST Life 首頁"><span class="brand-mark" aria-hidden="true">a<span>✳</span></span><span>AEUST <strong>Life</strong><small>課表以外，都是生活。</small></span></a>
         <nav aria-label="主要導覽">
           {nav.map(item => <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>{item.label}</a>)}
-          <a class="nav-feedback" href="/feedback" aria-current={path === '/feedback' ? 'page' : undefined}>我有個想法 <span aria-hidden="true">↗</span></a>
+          <a class="nav-feedback" href="/aeust-life/feedback/" aria-current={path === '/feedback' ? 'page' : undefined}>我有個想法 <span aria-hidden="true">↗</span></a>
         </nav>
       </div>
     </header>
     <main id="main" tabindex="-1"><slot /></main>
     <footer class="site-footer">
-      <div class="shell footer-top"><div><a class="footer-brand" href="/">AEUST Life<span aria-hidden="true">✳</span></a><p>由學生發起，和你一起把生活長出來。</p></div><nav aria-label="頁尾導覽"><a href="/about">關於專案</a><a href="/roadmap">開發進度</a><a href="/feedback">意見回饋</a>{site.repositoryUrl && <a href={site.repositoryUrl} rel="noopener noreferrer">GitHub ↗</a>}</nav></div>
+      <div class="shell footer-top"><div><a class="footer-brand" href="/aeust-life/">AEUST Life<span aria-hidden="true">✳</span></a><p>由學生發起，和你一起把生活長出來。</p></div><nav aria-label="頁尾導覽"><a href="/aeust-life/about/">關於專案</a><a href="/aeust-life/roadmap/">開發進度</a><a href="/aeust-life/feedback/">意見回饋</a>{site.repositoryUrl && <a href={site.repositoryUrl} rel="noopener noreferrer">GitHub ↗</a>}</nav></div>
       <div class="shell footer-bottom"><p>{site.disclaimer}</p><span class="mono">MADE BY NAGI · V0.1</span></div>
     </footer>
   </body>
