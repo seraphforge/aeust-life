@@ -3,7 +3,7 @@ import type { topics } from '../data/topics';
 interface Props { topic: typeof topics[number]; }
 const { topic } = Astro.props;
 ---
-<a class={`topic-card ${topic.color}`} href={`/${topic.slug}`}>
+<a class={`topic-card ${topic.color}`} href={`${import.meta.env.BASE_URL}${topic.slug}/`}>
   <div class="card-top"><span class="mono">{topic.number} / {topic.english}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
   <span class="topic-icon" aria-hidden="true">{topic.icon}</span>
   <h3>{topic.name}</h3>
