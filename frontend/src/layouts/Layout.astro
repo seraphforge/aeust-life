@@ -4,7 +4,7 @@ import { site } from '../config';
 interface Props { title?: string; description?: string; }
 const { title, description = '由學生發起、為學生而做的校園生活平台。一起探索活動、社團與課表以外的可能。' } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const nav = [{ href: '/explore', label: '探索生活' }, { href: '/roadmap', label: '開發進度' }, { href: '/about', label: '關於我們' }];
+const nav = [{ href: '/aeust-life/explore/', label: '探索生活' }, { href: '/aeust-life/roadmap/', label: '開發進度' }, { href: '/aeust-life/about/', label: '關於我們' }];
 ---
 <!doctype html>
 <html lang="zh-Hant-TW">
