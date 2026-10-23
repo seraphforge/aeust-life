@@ -8,5 +8,5 @@ const { topic } = Astro.props;
   <span class="topic-icon" aria-hidden="true">{topic.icon}</span>
   <h3>{topic.name}</h3>
   <p>{topic.description}</p>
-  <span class="card-status">規劃中 <span aria-hidden="true">·</span> 先來看看</span>
+  <span class="card-status">{topic.slug === 'clubs' ? 'V1 · 探索社團' : '規劃中 · 先來看看'}</span>
 </a>
