@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { events } from '../../data/events';
+export function getStaticPaths() { return events.map(event => ({ params: { slug: event.slug }, props: { event } })); }
+const { event } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+<Layout title={event.title}>
+  <section class="shell page-intro">
+    <a class="breadcrumb" href={base + 'events/'}>← 回到活動中心</a>
+    <p class="eyebrow">{event.type} / {event.registrationStatus}</p>
+    <h1>{event.title}</h1>
+    <p class="intro-description">{event.description}</p>
+    <p>日期：{event.date}</p><p>地點：{event.location}</p><p>主辦：{event.organizer}</p>
+    {event.sourceUrl && <p><a href={event.sourceUrl} target="_blank" rel="noopener noreferrer">活動資訊來源 ↗</a></p>}
+  </section>
+</Layout>
