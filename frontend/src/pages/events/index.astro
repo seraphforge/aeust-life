@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { events, departments, eventTypes, organizerTypes } from '../data/events';
+const base = import.meta.env.BASE_URL;
+---
+<Layout title="校園活動" description="迎新、宿營、茶會、晚會，找到一起創造回憶的人。">
+  <section class="shell page-intro">
+    <a class="breadcrumb" href={base + 'explore/'}>← 回到探索</a>
+    <p class="eyebrow">AEUST LIFE / EVENTS V0.3</p>
+    <h1>你缺想跟你一起瘋的人嗎？</h1>
+    <p class="intro-description">迎新、宿營、茶會、晚會，找到一起創造回憶的人。</p>
+  </section>
+  <section class="shell section compact" aria-label="活動探索">
+    <div class="event-filters">
+      <label>主辦單位<select id="organizer"><option value="">全部</option>{organizerTypes.map(o=><option value={o.value}>{o.label}</option>)}</select></label>
+      <label>科系<select id="department"><option value="">全部科系</option>{departments.map(d=><option value={d.id}>{d.name}</option>)}</select></label>
+      <label>活動類型<select id="type"><option value="">全部類型</option>{eventTypes.map(t=><option value={t}>{t}</option>)}</select></label>
+    </div>
+    <p id="count" class="small-note" aria-live="polite"></p>
+    <div class="event-grid" id="event-grid">
+      {events.map(e=><article class="event-card" data-organizer={e.organizerType} data-department={e.departmentId ?? ''} data-type={e.type}>
+        <span class="status-pill planned">{e.registrationStatus}</span>
+        <h2><a href={base + 'events/' + encodeURIComponent(e.slug) + '/'}>{e.title}</a></h2>
+        <p>{e.date} · {e.location}</p><p>{e.organizer} · {e.type}</p>
+      </article>)}
+    </div>
+    <div class="empty-state" id="event-empty" hidden><h2>還沒有符合條件的活動</h2><p>目前尚未發布經確認的活動資訊，請稍後再來看看。</p></div>
+  </section>
+  <script>
+    const selects = ['organizer','department','type'].map(id=>document.getElementById(id) as HTMLSelectElement);
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.event-card'));
+    const empty = document.getElementById('event-empty')!;
+    const count = document.getElementById('count')!;
+    function filter() {
+      const [organizer, department, type] = selects.map(s=>s.value);
+      let visible=0;
+      for (const card of cards) {
+        const show = (!organizer || card.dataset.organizer===organizer) && (!department || card.dataset.department===department) && (!type || card.dataset.type===type);
+        card.hidden=!show;
+        if(show) visible++;
+      }
+      empty.hidden=visible!==0;
+      count.textContent='找到 '+visible+' 場活動';
+    }
+    selects.forEach(s=>s.addEventListener('change',filter));
+    filter();
+  </script>
+  <style>
+    .event-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:2rem}
+    .event-filters label{display:grid;gap:.5rem;font-weight:700}
+    .event-filters select{width:100%;padding:.8rem;border:1px solid var(--color-line);border-radius:8px;background:white;color:var(--color-ink)}
+    .event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .event-card{border:1px solid var(--color-line);border-radius:14px;padding:1.5rem;background:white}
+    .event-card h2{font-size:1.3rem;margin:1rem 0}
+    .event-card p{color:var(--color-muted)}
+    .event-card[hidden],.empty-state[hidden]{display:none}
+    @media(max-width:700px){.event-filters,.event-grid{grid-template-columns:1fr}}
+  </style>
+</Layout>
